@@ -1,0 +1,20 @@
+<!-- <script>
+  window.onload = function () {
+    google.accounts.id.initialize({
+      client_id: '355977511840-iiutvteq8krios8ggkko8j8vmu36foke.apps.googleusercontent.com',
+      callback: handleCredentialResponse
+    });
+    google.accounts.id.prompt();
+  };
+</script> -->
+
+<html>
+  <body>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <div id="g_id_onload"
+         data-client_id="355977511840-iiutvteq8krios8ggkko8j8vmu36foke.apps.googleusercontent.com"
+         data-callback="handleCredentialResponse">
+    </div>
+    <div class="g_id_signin" data-type="standard"></div>
+  </body>
+</html>
