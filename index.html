@@ -10,11 +10,30 @@
 
 <html>
   <body>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <!-- <script src="https://accounts.google.com/gsi/client" async defer></script>
     <div id="g_id_onload"
          data-client_id="355977511840-iiutvteq8krios8ggkko8j8vmu36foke.apps.googleusercontent.com"
-         data-callback="handleCredentialResponse">
+         data-callback="handleCredentialResponse"
+         data-auto_prompt="false">
     </div>
-    <div class="g_id_signin" data-type="standard"></div>
+    <div class="g_id_signin" data-type="standard"></div> -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+      <script>
+        function handleCredentialResponse(response) {
+          console.log("Encoded JWT ID token: " + response.credential);
+        }
+        window.onload = function () {
+          google.accounts.id.initialize({
+            client_id: "355977511840-iiutvteq8krios8ggkko8j8vmu36foke.apps.googleusercontent.com",
+            callback: handleCredentialResponse
+          });
+          google.accounts.id.renderButton(
+            document.getElementById("buttonDiv"),
+            { theme: "outline", size: "large" }  // customization attributes
+          );
+          google.accounts.id.prompt(); // also display the One Tap dialog
+        }
+    </script>
+    <div id="buttonDiv"></div> 
   </body>
 </html>
