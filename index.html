@@ -40,7 +40,10 @@
           console.log("Encoded JWT ID token: " + response.credential);
           const script_id = urlParams.get('script_id');
           fetchAsync(`https://script.google.com/macros/s/${script_id}/exec?name=sam`)
-            .then(data => console.log(data))
+            .then((data) => {
+              console.log(data);
+              document.getElementById('output').innerText = JSON.stringify(data);
+            })
             .catch(reason => console.log(reason.message));
           
         }
@@ -57,5 +60,6 @@
         }
     </script>
     <div id="buttonDiv"></div>
+    <p id="output"></p>
   </body>
 </html>
