@@ -21,7 +21,7 @@
          data-auto_prompt="false">
     </div>
     <div class="g_id_signin" data-type="standard"></div> -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <!-- <script src="https://accounts.google.com/gsi/client" async defer></script> -->
       <script>
         const urlParams = new URLSearchParams(window.location.search)
         async function fetchAsync (url, jwt = '') {
@@ -50,26 +50,26 @@
             })
             .catch(reason => console.log(reason.message));
         }
-        function handleCredentialResponse(response) {
-          console.log("Encoded JWT ID token: " + response.credential);
-          hitAppsScript(response.credential);
-        }
-        window.onload = function () {
-          google.accounts.id.initialize({
-            client_id: urlParams.get('client_id'),
-            callback: handleCredentialResponse
-          });
-          google.accounts.id.renderButton(
-            document.getElementById("buttonDiv"),
-            { theme: "outline", size: "large" }  // customization attributes
-          );
-          google.accounts.id.prompt(); // also display the One Tap dialog
-        }
+        // function handleCredentialResponse(response) {
+        //   console.log("Encoded JWT ID token: " + response.credential);
+        //   hitAppsScript(response.credential);
+        // }
+        // window.onload = function () {
+        //   google.accounts.id.initialize({
+        //     client_id: urlParams.get('client_id'),
+        //     callback: handleCredentialResponse
+        //   });
+        //   google.accounts.id.renderButton(
+        //     document.getElementById("buttonDiv"),
+        //     { theme: "outline", size: "large" }  // customization attributes
+        //   );
+        //   google.accounts.id.prompt(); // also display the One Tap dialog
+        // }
         // window.addEventListener('DOMContentLoaded', function () {
         //   hitAppsScript();
         // });
     </script>
-    <div id="buttonDiv"></div>
+    <!-- <div id="buttonDiv"></div> -->
     <p id="output"></p>
   </body>
 </html>
