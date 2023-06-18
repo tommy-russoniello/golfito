@@ -30,9 +30,9 @@
         }
         function handleCredentialResponse(response) {
           console.log("Encoded JWT ID token: " + response.credential);
-          // fetchAsync("https://script.google.com/macros/s/AKfycbwJJu24YQA3lSwz5jKg2wcg249s-64v03dhgX1zdl-HWSYVW6zMpyEK4ZhJqnoM0Q4/exec")
-          //   .then(data => console.log(data))
-          //   .catch(reason => console.log(reason.message));
+          fetchAsync("https://script.google.com/macros/s/AKfycbwJJu24YQA3lSwz5jKg2wcg249s-64v03dhgX1zdl-HWSYVW6zMpyEK4ZhJqnoM0Q4/exec?name=sam")
+            .then(data => console.log(data))
+            .catch(reason => console.log(reason.message));
           
         }
         window.onload = function () {
@@ -47,34 +47,6 @@
           google.accounts.id.prompt(); // also display the One Tap dialog
         }
     </script>
-    <div id="buttonDiv"></div> 
-    <form id="contact-form">
-      <h2>Formulario de contacto</h2>
-      <p>
-          <label>Nombre<br><input type="text"  name="nombre"></label><br>
-          <label>Email<br><input type="email" name="email"></label><br>
-          <label>Comentarios<br></label><textarea name="comentarios" cols=40 rows=5></textarea></label>
-      </p>
-      <input id="submit-contact-form" type="submit" value="Submit">
-  </form>
-  <script>
-  (function() {       
-      var $form = $('form#contact-form'), url = "https://script.google.com/macros/s/AKfycbwJJu24YQA3lSwz5jKg2wcg249s-64v03dhgX1zdl-HWSYVW6zMpyEK4ZhJqnoM0Q4/exec";
-      $('#submit-contact-form').on('click', function(e) {
-          e.preventDefault();
-          var jqxhr = $.ajax({
-              url: url,
-              method: "GET",
-              dataType: "json",
-              data: $form.serializeObject(),
-              success: function(data) {
-                  console.log(data);
-                  $('form#contact-form').hide();
-                  $('body').append("<p style='color:green'>testingtesting1234</p>");
-              }
-          });
-      });
-  })();
-  </script>
+    <div id="buttonDiv"></div>
   </body>
 </html>
