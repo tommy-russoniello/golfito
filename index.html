@@ -36,16 +36,22 @@
           let data = await response.json();
           return data;
         }
-        function handleCredentialResponse(response) {
-          console.log("Encoded JWT ID token: " + response.credential);
+        function hitAppsScript() {
           const script_id = urlParams.get('script_id');
-          fetchAsync(`https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/${script_id}/exec?name=sam`)
+          let url = `https://script.google.com/macros/s/${script_id}/exec?name=sam`;
+          if (urlParams.get('cors_proxy') == 'true') {
+            url = "https://cors-anywhere.herokuapp.com/" + url;
+          }
+          fetchAsync(url)
             .then((data) => {
               console.log(data);
               document.getElementById('output').innerText = JSON.stringify(data);
             })
             .catch(reason => console.log(reason.message));
-          
+        }
+        function handleCredentialResponse(response) {
+          console.log("Encoded JWT ID token: " + response.credential);
+          hitAppsScript();
         }
         window.onload = function () {
           google.accounts.id.initialize({
@@ -58,6 +64,9 @@
           );
           google.accounts.id.prompt(); // also display the One Tap dialog
         }
+        // window.addEventListener('DOMContentLoaded', function () {
+        //   hitAppsScript();
+        // });
     </script>
     <div id="buttonDiv"></div>
     <p id="output"></p>
