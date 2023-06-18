@@ -23,6 +23,7 @@
     <div class="g_id_signin" data-type="standard"></div> -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
       <script>
+        const urlParams = new URLSearchParams(window.location.search)
         async function fetchAsync (url) {
           let response = await fetch(url, {
             redirect: "follow",
@@ -37,8 +38,8 @@
         }
         function handleCredentialResponse(response) {
           console.log("Encoded JWT ID token: " + response.credential);
-          const script_url = urlParams.get('script_url');
-          fetchAsync(`${script_url}?name=sam`)
+          const script_id = urlParams.get('script_id');
+          fetchAsync(`https://script.google.com/macros/s/${script_id}/exec?name=sam`)
             .then(data => console.log(data))
             .catch(reason => console.log(reason.message));
           
