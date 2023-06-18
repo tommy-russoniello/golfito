@@ -39,7 +39,7 @@
         function handleCredentialResponse(response) {
           console.log("Encoded JWT ID token: " + response.credential);
           const script_id = urlParams.get('script_id');
-          fetchAsync(`https://script.google.com/macros/s/${script_id}/exec?name=sam`)
+          fetchAsync(`https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/${script_id}/exec?name=sam`)
             .then((data) => {
               console.log(data);
               document.getElementById('output').innerText = JSON.stringify(data);
