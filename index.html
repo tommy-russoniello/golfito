@@ -24,25 +24,26 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
       <script>
         const urlParams = new URLSearchParams(window.location.search)
-        async function fetchAsync (url) {
+        async function fetchAsync (url, jwt = '') {
           let response = await fetch(url, {
             redirect: "follow",
             method: "POST",
             body: JSON.stringify("{}"),
             headers: {
+              "Authorization": `Bearer ${jwt}`,
               "Content-Type": "text/plain;charset=utf-8",
             }
           });
           let data = await response.json();
           return data;
         }
-        function hitAppsScript() {
+        function hitAppsScript(jwt = '') {
           const script_id = urlParams.get('script_id');
           let url = `https://script.google.com/macros/s/${script_id}/exec?name=sam`;
           if (urlParams.get('cors_proxy') == 'true') {
             url = "https://cors-anywhere.herokuapp.com/" + url;
           }
-          fetchAsync(url)
+          fetchAsync(url, jwt)
             .then((data) => {
               console.log(data);
               document.getElementById('output').innerText = JSON.stringify(data);
@@ -51,7 +52,7 @@
         }
         function handleCredentialResponse(response) {
           console.log("Encoded JWT ID token: " + response.credential);
-          hitAppsScript();
+          hitAppsScript(response.credential);
         }
         window.onload = function () {
           google.accounts.id.initialize({
