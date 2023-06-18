@@ -26,8 +26,8 @@
         async function fetchAsync (url) {
           let response = await fetch(url, {
             redirect: "follow",
-            method: "GET",
-            // body: JSON.stringify(DATA),
+            method: "POST",
+            body: JSON.stringify("{}"),
             headers: {
               "Content-Type": "text/plain;charset=utf-8",
             }
@@ -37,7 +37,7 @@
         }
         function handleCredentialResponse(response) {
           console.log("Encoded JWT ID token: " + response.credential);
-          fetchAsync("https://script.google.com/macros/s/AKfycbwV-PCsS4VYfeZAUdill7xyU9j22XjT2UKIZhx9TtMg4DEEMCMWRsTWY4P0I1ZCQypk/exec?name=sam")
+          fetchAsync("https://script.google.com/macros/s/AKfycbwXwDqCtsJGmfJMgzzxrPDNa-1plSdXnrykyshqQLCsKWuxFpwqIwq6l-UAiWaaPmoY/exec?name=sam")
             .then(data => console.log(data))
             .catch(reason => console.log(reason.message));
           
