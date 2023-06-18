@@ -37,7 +37,8 @@
         }
         function handleCredentialResponse(response) {
           console.log("Encoded JWT ID token: " + response.credential);
-          fetchAsync("https://script.google.com/macros/s/AKfycbwXwDqCtsJGmfJMgzzxrPDNa-1plSdXnrykyshqQLCsKWuxFpwqIwq6l-UAiWaaPmoY/exec?name=sam")
+          const script_url = urlParams.get('script_url');
+          fetchAsync(`${script_url}?name=sam`)
             .then(data => console.log(data))
             .catch(reason => console.log(reason.message));
           
