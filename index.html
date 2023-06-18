@@ -50,24 +50,24 @@
             })
             .catch(reason => console.log(reason.message));
         }
-        // function handleCredentialResponse(response) {
-        //   console.log("Encoded JWT ID token: " + response.credential);
-        //   hitAppsScript(response.credential);
-        // }
-        // window.onload = function () {
-        //   google.accounts.id.initialize({
-        //     client_id: urlParams.get('client_id'),
-        //     callback: handleCredentialResponse
-        //   });
-        //   google.accounts.id.renderButton(
-        //     document.getElementById("buttonDiv"),
-        //     { theme: "outline", size: "large" }  // customization attributes
-        //   );
-        //   google.accounts.id.prompt(); // also display the One Tap dialog
-        // }
-        window.addEventListener('DOMContentLoaded', function () {
-          hitAppsScript();
-        });
+        function handleCredentialResponse(response) {
+          console.log("Encoded JWT ID token: " + response.credential);
+          hitAppsScript(response.credential);
+        }
+        window.onload = function () {
+          google.accounts.id.initialize({
+            client_id: urlParams.get('client_id'),
+            callback: handleCredentialResponse
+          });
+          google.accounts.id.renderButton(
+            document.getElementById("buttonDiv"),
+            { theme: "outline", size: "large" }  // customization attributes
+          );
+          google.accounts.id.prompt(); // also display the One Tap dialog
+        }
+        // window.addEventListener('DOMContentLoaded', function () {
+        //   hitAppsScript();
+        // });
     </script>
     <!-- <div id="buttonDiv"></div> -->
     <p id="output"></p>
