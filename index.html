@@ -24,7 +24,14 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
       <script>
         async function fetchAsync (url) {
-          let response = await fetch(url);
+          let response = await fetch(url, {
+            redirect: "follow",
+            method: "GET",
+            // body: JSON.stringify(DATA),
+            headers: {
+              "Content-Type": "text/plain;charset=utf-8",
+            }
+          });
           let data = await response.json();
           return data;
         }
